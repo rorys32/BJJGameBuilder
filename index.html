@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BJJ Game Builder</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Version 1.1.000 -->
+    <!-- Version 1.1.001 -->
 </head>
 <body>
     <header>
@@ -43,13 +43,45 @@
             <ul id="attendanceList"></ul>
         </section>
 
+        <section id="warmup">
+            <h2>Warm Up</h2>
+            <input id="warmupDate" type="date" />
+            <select id="warmupIntensity">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+            <button onclick="logWarmup()">Log Warm Up</button>
+            <ul id="warmupList"></ul>
+        </section>
+
         <section id="techniques">
-            <h2>Techniques</h2>
+            <h2>Techniques (Per Class)</h2>
             <input id="techDate" type="date" />
-            <input id="category" placeholder="Category (e.g., Takedown)" />
-            <input id="description" placeholder="Description" />
-            <button onclick="logTechnique()">Log Technique</button>
+            <input id="takedown" placeholder="Takedown Description" />
+            <input id="takedownPartner" placeholder="Takedown Partner" />
+            <input id="drills" placeholder="Drills Description" />
+            <input id="drillsPartner" placeholder="Drills Partner" />
+            <input id="specific" placeholder="Specific Description" />
+            <input id="specificPartner" placeholder="Specific Partner" />
+            <button onclick="logTechnique()">Log Class Techniques</button>
             <ul id="techniqueList"></ul>
+        </section>
+
+        <section id="rolls">
+            <h2>Rolls</h2>
+            <input id="rollDate" type="date" />
+            <input id="rollPartner" placeholder="Training Partner" />
+            <input id="rollNotes" placeholder="Notes" />
+            <select id="rollIntensity">
+                <option value="Light">Light</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+            <input id="rollSubmissions" placeholder="Submissions" />
+            <input id="rollDuration" type="number" placeholder="Duration (minutes)" />
+            <button onclick="logRoll()">Log Roll</button>
+            <ul id="rollList"></ul>
         </section>
 
         <section id="competitions" class="hidden">
@@ -61,6 +93,20 @@
             <ul id="competitionList"></ul>
         </section>
 
+        <section id="checkin">
+            <h2>Post-Class Check-In</h2>
+            <input id="checkinDate" type="date" />
+            <select id="checkinFeeling">
+                <option value="Amped!">Amped!</option>
+                <option value="Stoked">Stoked</option>
+                <option value="Humbled">Humbled</option>
+                <option value="Tired">Tired</option>
+            </select>
+            <input id="checkinNotes" placeholder="Notes (optional)" />
+            <button onclick="logCheckin()">Log Check-In</button>
+            <ul id="checkinList"></ul>
+        </section>
+
         <section id="data">
             <h2>Data Management</h2>
             <button onclick="exportData()">Export Data</button>
@@ -68,7 +114,7 @@
         </section>
     </main>
     <footer>
-        <p>BJJ Game Builder - Version 1.1.000 | Copyright © 2025 Forest Global Training Partners</p>
+        <p>BJJ Game Builder - Version 1.1.001 | Copyright © 2025 Forest Global Training Partners</p>
     </footer>
     <script src="app.js"></script>
 </body>
