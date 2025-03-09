@@ -1,4 +1,4 @@
-// Version 1.1.000
+// Version 1.1.001
 // Main logic for BJJ Game Builder single-user app
 
 // Load data from localStorage on startup
@@ -6,22 +6,25 @@ let data = JSON.parse(localStorage.getItem('bjjData')) || {
     profile: { name: '', beltRank: 'White', competitorMode: false },
     schedules: [],
     attendance: [],
+    warmup: [],
     techniques: [],
+    rolls: [],
+    checkin: [],
     competitions: []
 };
 
 // Initialize UI
 function init() {
-    // Profile
     document.getElementById('name').value = data.profile.name;
     document.getElementById('beltRank').value = data.profile.beltRank;
     document.getElementById('competitorMode').checked = data.profile.competitorMode;
     toggleCompetitorMode();
-
-    // Load lists
     updateScheduleList();
     updateAttendanceList();
+    updateWarmupList();
     updateTechniqueList();
+    updateRollList();
+    updateCheckinList();
     updateCompetitionList();
 }
 
@@ -58,14 +61,61 @@ function logAttendance() {
     updateAttendanceList();
 }
 
+// Log warmup
+function logWarmup() {
+    const date = document.getElementById('warmupDate').value;
+    const intensity = document.getElementById('warmupIntensity').value;
+    data.warmup.push({ date, intensity });
+    saveData();
+    updateWarmupList();
+}
+
 // Log technique
 function logTechnique() {
     const date = document.getElementById('techDate').value;
-    const category = document.getElementById('category').value;
-    const description = document.getElementById('description').value;
-    data.techniques.push({ date, category, description });
+    const technique = {
+        date,
+        takedown: {
+            description: document.getElementById('takedown').value,
+            partner: document.getElementById('takedownPartner').value
+        },
+        drills: {
+            description: document.getElementById('drills').value,
+            partner: document.getElementById('drillsPartner').value
+        },
+        specific: {
+            description: document.getElementById('specific').value,
+            partner: document.getElementById('specificPartner').value
+        }
+    };
+    data.techniques.push(technique);
     saveData();
     updateTechniqueList();
+}
+
+// Log roll
+function logRoll() {
+    const roll = {
+        date: document.getElementById('rollDate').value,
+        partner: document.getElementById('rollPartner').value,
+        notes: document.getElementById('rollNotes').value,
+        intensity: document.getElementById('rollIntensity').value,
+        submissions: document.getElementById('rollSubmissions').value,
+        duration: document.getElementById('rollDuration').value
+    };
+    data.rolls.push(roll);
+    saveData();
+    updateRollList();
+}
+
+// Log check-in
+function logCheckin() {
+    const date = document.getElementById('checkinDate').value;
+    const feeling = document.getElementById('checkinFeeling').value;
+    const notes = document.getElementById('checkinNotes').value;
+    data.checkin.push({ date, feeling, notes });
+    saveData();
+    updateCheckinList();
 }
 
 // Log competition
@@ -89,9 +139,33 @@ function updateAttendanceList() {
     list.innerHTML = data.attendance.map(a => `<li>${a.date}: ${a.attended ? 'Attended' : 'Missed'}</li>`).join('');
 }
 
+function updateWarmupList() {
+    const list = document.getElementById('warmupList');
+    list.innerHTML = data.warmup.map(w => `<li>${w.date}: Intensity ${w.intensity}</li>`).join('');
+}
+
 function updateTechniqueList() {
     const list = document.getElementById('techniqueList');
-    list.innerHTML = data.techniques.map(t => `<li>${t.date} - ${t.category}: ${t.description}</li>`).join('');
+    list.innerHTML = data.techniques.map(t => `
+        <li>${t.date} - 
+            Takedown: ${t.takedown.description} (w/ ${t.takedown.partner}), 
+            Drills: ${t.drills.description} (w/ ${t.drills.partner}), 
+            Specific: ${t.specific.description} (w/ ${t.specific.partner})
+        </li>
+    `).join('');
+}
+
+function updateRollList() {
+    const list = document.getElementById('rollList');
+    list.innerHTML = data.rolls.map(r => `
+        <li>${r.date} - ${r.partner}: ${r.notes}, Intensity: ${r.intensity}, 
+            Subs: ${r.submissions}, ${r.duration} min</li>
+    `).join('');
+}
+
+function updateCheckinList() {
+    const list = document.getElementById('checkinList');
+    list.innerHTML = data.checkin.map(c => `<li>${c.date}: ${c.feeling}${c.notes ? ' - ' + c.notes : ''}</li>`).join('');
 }
 
 function updateCompetitionList() {
