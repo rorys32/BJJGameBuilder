@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BJJ Game Builder</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Version 1.1.000 -->
+</head>
+<body>
+    <header>
+        <h1>BJJ Game Builder</h1>
+    </header>
+    <main>
+        <section id="profile">
+            <h2>Profile</h2>
+            <input id="name" placeholder="Your Name" />
+            <select id="beltRank">
+                <option value="White">White</option>
+                <option value="Blue">Blue</option>
+                <option value="Purple">Purple</option>
+                <option value="Brown">Brown</option>
+                <option value="Black">Black</option>
+            </select>
+            <label><input type="checkbox" id="competitorMode"> Competitor Mode</label>
+            <button onclick="saveProfile()">Save Profile</button>
+        </section>
+
+        <section id="schedule">
+            <h2>Class Schedule</h2>
+            <input id="dojoName" placeholder="Dojo Name" />
+            <input id="days" placeholder="Days (e.g., Mon, Wed)" />
+            <input id="time" type="time" />
+            <button onclick="addSchedule()">Add Schedule</button>
+            <ul id="scheduleList"></ul>
+        </section>
+
+        <section id="attendance">
+            <h2>Attendance</h2>
+            <input id="attendanceDate" type="date" />
+            <label><input type="checkbox" id="attended"> Attended</label>
+            <button onclick="logAttendance()">Log Attendance</button>
+            <ul id="attendanceList"></ul>
+        </section>
+
+        <section id="techniques">
+            <h2>Techniques</h2>
+            <input id="techDate" type="date" />
+            <input id="category" placeholder="Category (e.g., Takedown)" />
+            <input id="description" placeholder="Description" />
+            <button onclick="logTechnique()">Log Technique</button>
+            <ul id="techniqueList"></ul>
+        </section>
+
+        <section id="competitions" class="hidden">
+            <h2>Competitions</h2>
+            <input id="compDate" type="date" />
+            <input id="eventName" placeholder="Event Name" />
+            <input id="results" placeholder="Results" />
+            <button onclick="logCompetition()">Log Competition</button>
+            <ul id="competitionList"></ul>
+        </section>
+
+        <section id="data">
+            <h2>Data Management</h2>
+            <button onclick="exportData()">Export Data</button>
+            <input type="file" id="importFile" accept=".json" onchange="importData(event)" />
+        </section>
+    </main>
+    <footer>
+        <p>BJJ Game Builder - Version 1.1.000 | Copyright © 2025 Forest Global Training Partners</p>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
