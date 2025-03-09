@@ -1,0 +1,52 @@
+{
+  "profile": {
+    "name": "Jane Smith",
+    "beltRank": "Purple",
+    "competitorMode": true
+  },
+  "schedules": [
+    {
+      "dojoName": "Main Dojo",
+      "days": ["Monday", "Wednesday"],
+      "time": "18:00"
+    }
+  ],
+  "attendance": [
+    {
+      "date": "2025-03-10",
+      "attended": true
+    }
+  ],
+  "warmup": [
+    {
+      "date": "2025-03-10",
+      "intensity": "Medium"
+    }
+  ],
+  "techniques": [
+    {
+      "date": "2025-03-10",
+      "takedown": {"description": "Double leg takedown", "partner": "Alex"},
+      "drills": {"description": "Guard passing drill", "partner": "Sam"},
+      "specific": {"description": "Armbar from mount", "partner": "Jordan"}
+    }
+  ],
+  "rolls": [
+    {
+      "date": "2025-03-10",
+      "partner": "Chris",
+      "notes": "Focused on defense",
+      "intensity": "Medium",
+      "submissions": "Caught a triangle",
+      "duration": "5"
+    }
+  ],
+  "checkin": [
+    {
+      "date": "2025-03-10",
+      "feeling": "Stoked",
+      "notes": "Really clicked today"
+    }
+  ],
+  "competitions": []
+}
