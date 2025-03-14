@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BJJ Game Builder</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Version 1.1.001 -->
+    <!-- Version 1.1.004 -->
 </head>
 <body>
     <header>
+        <img id="logo" src="https://www.ralphgraciefl.com/logo.png" alt="Ralph Gracie Logo" style="height: 50px;">
         <h1>BJJ Game Builder</h1>
+        <label class="switch">
+            <input type="checkbox" id="langToggle" onchange="toggleLanguage()">
+            <span class="slider round"></span>
+        </label>
     </header>
+    <div id="beltStripe"></div>
     <main>
         <section id="profile">
             <h2>Profile</h2>
             <input id="name" placeholder="Your Name" />
-            <select id="beltRank">
+            <select id="beltRank" onchange="updateBeltStripe()">
                 <option value="White">White</option>
                 <option value="Blue">Blue</option>
                 <option value="Purple">Purple</option>
@@ -38,14 +44,13 @@
         <section id="attendance">
             <h2>Attendance</h2>
             <input id="attendanceDate" type="date" />
-            <label><input type="checkbox" id="attended"> Attended</label>
+            <label><input type="checkbox" id="attended"> I attended this class</label>
             <button onclick="logAttendance()">Log Attendance</button>
             <ul id="attendanceList"></ul>
         </section>
 
         <section id="warmup">
             <h2>Warm Up</h2>
-            <input id="warmupDate" type="date" />
             <select id="warmupIntensity">
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
@@ -57,13 +62,15 @@
 
         <section id="techniques">
             <h2>Techniques (Per Class)</h2>
-            <input id="techDate" type="date" />
-            <input id="takedown" placeholder="Takedown Description" />
+            <input id="techDate" type="date" onchange="suggestTechniques()" />
+            <p id="techSuggestion" style="color: #8B0000;"></p>
+            <input id="takedown" list="techniqueList" placeholder="Takedown Description" />
             <input id="takedownPartner" placeholder="Takedown Partner" />
-            <input id="drills" placeholder="Drills Description" />
+            <input id="drills" list="techniqueList" placeholder="Drills Description" />
             <input id="drillsPartner" placeholder="Drills Partner" />
-            <input id="specific" placeholder="Specific Description" />
+            <input id="specific" list="techniqueList" placeholder="Specific Description" />
             <input id="specificPartner" placeholder="Specific Partner" />
+            <datalist id="techniqueList"></datalist>
             <button onclick="logTechnique()">Log Class Techniques</button>
             <ul id="techniqueList"></ul>
         </section>
@@ -112,9 +119,18 @@
             <button onclick="exportData()">Export Data</button>
             <input type="file" id="importFile" accept=".json" onchange="importData(event)" />
         </section>
+
+        <section id="classSchedule">
+            <h2>Ralph Gracie Class Schedule</h2>
+            <div id="calendar">
+                <div class="day">Monday</div><div class="day">Tuesday</div><div class="day">Wednesday</div>
+                <div class="day">Thursday</div><div class="day">Friday</div><div class="day">Saturday</div>
+                <div class="day">Sunday</div>
+            </div>
+        </section>
     </main>
     <footer>
-        <p>BJJ Game Builder - Version 1.1.001 | Copyright © 2025 Forest Global Training Partners</p>
+        <p>BJJ Game Builder - Version 1.1.004 | Copyright © 2025 Forest Global Training Partners</p>
     </footer>
     <script src="app.js"></script>
 </body>

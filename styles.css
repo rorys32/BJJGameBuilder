@@ -1,18 +1,29 @@
-/* Version 1.1.001 */
-/* Optimistic, uplifting design with bright colors and modern fonts */
+/* Version 1.1.004 */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #e6f3ff; /* Light blue background */
+    background-color: #e6f3ff;
     margin: 0;
     padding: 0;
 }
 
-header {
-    background-color: #4CAF50; /* Bright green */
+header, footer {
+    background: linear-gradient(to right, #000000 70%, #8B0000 30%);
     color: white;
-    text-align: center;
     padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
 }
+
+#beltStripe {
+    background: linear-gradient(to right, #FFFFFF 70%, #000000 30%);
+    height: 10px;
+    width: 100%;
+}
+
+header h1 { margin: 0; }
 
 main {
     padding: 20px;
@@ -28,21 +39,18 @@ section {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-h2 {
-    color: #2196F3; /* Bright blue */
-}
+h2 { color: #8B0000; }
 
 button {
-    background-color: #FFCA28; /* Bright yellow */
+    background-color: #8B0000;
+    color: white;
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #FFB300; /* Darker yellow */
-}
+button:hover { background-color: #5A0000; }
 
 input, select {
     margin: 5px 0;
@@ -50,16 +58,65 @@ input, select {
     width: calc(100% - 12px);
 }
 
-.hidden {
-    display: none;
+.hidden { display: none; }
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    padding: 10px;
 }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #4CAF50;
+.day {
+    background-color: #000000;
     color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    text-align: center;
+    padding: 5px;
 }
+
+.time-block {
+    background-color: #8B0000;
+    color: white;
+    border: 1px solid #5A0000;
+    padding: 5px;
+    min-height: 50px;
+    text-align: center;
+}
+
+/* Slider Toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input { display: none; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider { background-color: #8B0000; }
+
+input:checked + .slider:before { transform: translateX(26px); }
