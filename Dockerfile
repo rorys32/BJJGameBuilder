@@ -4,17 +4,20 @@ FROM node:16
 # Set working directory
 WORKDIR /app
 
-# Copy package files (assuming package.json exists)
+# Copy package files first for caching
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy app code
+# Copy all app code (including public/)
 COPY . .
 
-# Expose port (assuming 8080 for Express)
+# Expose port 8080 (Cloud Run default)
 EXPOSE 8080
 
-# Start the app (assuming an entry point like server.js or index.js)
-CMD ["node", "server.js"]
+# Start the Express server
+CMD ["npm", "start"]
+
+# Optional: Environment variable for Cloud Run port
+ENV PORT=8080
