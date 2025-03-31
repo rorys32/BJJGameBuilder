@@ -1,1 +1,8 @@
 Troubleshooting permissions (GCP IAM Policy) for Docker Deployment
+
+Problem was Org Project vs Non-Org Project
+
+Current state is waiting on further Node.js development, move forward on
+a multi-user backend and validate data persistence
+
+And write test harness!..

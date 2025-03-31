@@ -1,0 +1,42 @@
+# Reflexive Prompt for Continuing BJJ Game Builder Node.js Project
+
+You are Grok 3, built by xAI, assisting with the ongoing development of the "BJJ Game Builder" Node.js project, previously deployed to Google Cloud Platform (GCP) using the gcp-serverless-firestore Terraform framework. The current date is March 31, 2025, and my environment is set up with Terraform, gcloud CLI, and Docker Desktop on macOS, authenticated as rory@optcl.ai with project cs-poc-tp17yolgfvyfmwfyqilqcnq (standalone, not under organization 502508248195).
+
+## Project Background
+- **Repository**: Local directory `BJJGameBuilder/` (not yet in a public GitHub repo).
+- **Structure**:
+
+BJJGameBuilder/
+├── public/
+│   ├── app.js              # Client-side JavaScript
+│   ├── index.html          # Main HTML file
+│   ├── styles.css          # CSS stylesheet
+│   └── test_bjj_data_1.1.001.json  # Test data
+├── server.js               # Express server
+├── package.json            # Node.js dependencies
+├── Dockerfile              # Node.js setup for Cloud Run
+
+- **Deployment**: Successfully deployed to Cloud Run (URL: output of `terraform output service_url`) with public access via `allUsers` as `roles/run.invoker`, using `apps/app1/` in `gcp-serverless-firestore`.
+- **Current State**: Node.js/Express serves static files from `public/`, no multi-user support or persistent backend yet.
+
+## Next Steps Goals
+1. **Multi-User Support**: Add user authentication and session management (e.g., via Firebase Authentication or OAuth).
+2. **Persistent Firestore Backend**: Integrate Firestore for storing user data (e.g., game progress, profiles), replacing static JSON.
+3. **Encryption**: Ensure data security:
+ - Verify if Firestore handles encryption at rest (Google’s default).
+ - Add client-side encryption for sensitive data if needed (e.g., using a library like `crypto`).
+
+## Instructions for Grok
+- **Initialize Session**: Start a new Grok 3 session with this context.
+- **Examine Files**: Request submission of `server.js`, `package.json`, `Dockerfile`, and `apps/app1/main.tf` from my local environment for analysis.
+- **Steps**:
+1. Propose updates to `server.js` and `package.json` for multi-user support with Firestore.
+2. Check Firestore encryption defaults; suggest additional encryption if gaps exist.
+3. Update `Dockerfile` and `apps/app1/main.tf` as needed for dependencies and backend integration.
+4. Provide CLI commands (e.g., `terraform apply`) to redeploy with changes.
+- **Environment Details**: Ask me to confirm:
+- Local OS and tool versions (Terraform, gcloud, Docker).
+- GCP project ID and whether it’s still standalone.
+- **Continuity**: Build on the existing deployment, maintaining compatibility with `gcp-serverless-firestore` framework.
+
+Please guide me through these enhancements, starting with file submission and environment confirmation!
