@@ -1,0 +1,10 @@
+This deploys to gcp 
+
+1st time via:
+via gcp-serverless-firestore/apps/app1
+us-central1
+https://app1-193644834042.us-central1.run.app
+
+
+CI/CD:
+TBD
